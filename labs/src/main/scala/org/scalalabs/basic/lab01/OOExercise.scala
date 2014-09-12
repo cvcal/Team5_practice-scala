@@ -1,6 +1,8 @@
 package org.scalalabs.basic.lab01
 import scala.language.implicitConversions
 /**
+ *  * Edited by Chloe Calvarin & Matt Cook
+ *  
  * The goal of this exercise is to get familiar basic OO constructs in scala
  *
  * Fix the code so that the unit test 'CurrencyExerciseTest' passes.
@@ -40,6 +42,40 @@ import scala.language.implicitConversions
  *   of type [[org.scalalabs.basic.lab01.CurrencyConverter]]
  * - Use the implicit CurrencyConverter to do the conversion. 
  */
-class Euro {
-
+class Euro(val euro:Int, val cents:Int = 0) extends Currency("EUR") with Ordered[Euro] {
+  val inCents:Int = cents + 100 * euro
+  
+  // + to the Euro class that adds another Euro
+  def +(other:Euro):Euro = {
+    val totalCents = other.inCents + inCents
+    Euro.fromCents(totalCents)
+  }
+  
+  // * to the Euro class that multiplies an Euro by an integer
+  def *(multiple:Int):Euro = {
+    val newCents = inCents * multiple
+    Euro.fromCents(newCents)
+  }
+  
+  override def toString = {
+    val centSymbol : String = 
+      if (cents == 0) "--" 
+      else if (cents < 10) "0" + cents.toString 
+      else cents.toString
+    symbol + ": " + euro + "," + centSymbol
+  }
+  
+  def compare(that: Euro) =  this.inCents - that.inCents
 }
+
+// Companion object of the Euro class
+object Euro {
+  def fromCents(initialCents:Int):Euro = {
+		new Euro(initialCents/100, initialCents%100)
+		
+  }
+}
+
+abstract class Currency(val symbol:String)
+
+

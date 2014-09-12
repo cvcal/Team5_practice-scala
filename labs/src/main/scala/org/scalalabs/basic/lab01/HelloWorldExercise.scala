@@ -2,9 +2,7 @@ package org.scalalabs.basic.lab01
 
 /**
  * The goal of this exercise is to get familiar with the basic language constructs of Scala.
- *
- * Fix the code so that the unit test 'HelloWorldExerciseTest' passes.
- *
+ * Edited by Chloe Calvarin & Matt Cook
  */
 object HelloWorld {
 
@@ -25,7 +23,7 @@ object HelloWorld {
    * More on variable declarations can be found here:
    * http://programming-scala.labs.oreilly.com/ch02.html#VariableDeclarationsAndDefinitions
    */
-	val sayHello: String = "FixMe"
+	val sayHello: String = "Hello from Scala"
 
 
   /**
@@ -45,7 +43,7 @@ object HelloWorld {
    * More on method declarations can be found here:
    * http://programming-scala.labs.oreilly.com/ch02.html#MethodDeclarationsAndDefinitions
    */
-	def echo(text: String): String = "FixMe"
+	def echo(text: String): String = "Echo"
 }
 
 
@@ -79,7 +77,7 @@ object HelloWorld {
 object HelloWorldClassAndObject {
 	def apply(initialText:String):HelloWorldClassAndObject = {
 		new HelloWorldClassAndObject {
-			val text="FixMe"
+			val text=initialText
 		}
 	}
 }
@@ -99,11 +97,11 @@ object HelloWorldWithTraits extends HelloTrait with WorldTrait {
  * - combine the 'helloMethod' of HelloTrait and the 'worldMethod' of WorldTrait to create a new message
  * - just replacing the FixMe string would of course be cheating :)
  */
-	def hello:String = "FixMe"
+	def hello:String = helloMethod + worldMethod
 }
 
 trait HelloTrait {
-	def helloMethod:String = "FixMe"
+	def helloMethod:String = "Hello "
 }
 
 trait WorldTrait {
