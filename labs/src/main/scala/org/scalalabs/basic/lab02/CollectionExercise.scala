@@ -50,7 +50,7 @@ object CollectionExercise02 {
    * using a functional approach.
    */
   def groupAdultsPerAgeGroup(persons: Seq[Person]): Map[Int, Seq[Person]] = {
-    error("fix me")
+   (persons.filter(_.age > 17).sortBy(_.name)).groupBy(_.age/10*10)
   }
 }
 
@@ -65,7 +65,8 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-    error("fix me")
+        error("fix me")
+   // seq.sliding(2,1).toList.find{(x:Seq[T] )=> x(1)<=x(0)}.isEmpty()
 
 }
 /*========================================================== */
@@ -76,6 +77,9 @@ object CollectionExercise04 {
    * To keep it simple it's ok to use String.split to extract all words of a sentence.
    */
   def calcLengthLongestWord(lines: String*): Int = {
-    error("fix me")
+    lines.map(_.split(" ")).flatten.map(_.length()).max
   }
 }
+
+
+

@@ -29,7 +29,13 @@ object RecursionPatternMatchingExercise {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease(seq: Seq[Int]): Boolean = {
-    error("fix me")
+	if (seq.size == 1){
+	  true
+	} else if (seq(0) >= seq(1)) {
+      false
+    } else {
+      checkValuesIncrease(seq tail)
+    }
   }
   
   /**
@@ -37,7 +43,12 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1), List(2), List(3), List(1,1)
    */
   def groupConsecutive[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    val consecGroup: List[T] = in.takeWhile(_ == in(0))
+    if (consecGroup.size == in.size) {
+      List(consecGroup)
+    } else {
+      consecGroup::groupConsecutive(in.dropWhile(_ == in(0)))
+    }
   }
 
   /**
@@ -45,7 +56,12 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,1,1,1), List(2), List(3)
    */
   def groupEquals[T](in: List[T]): List[List[T]] = {
-    error("fix me")
+    val (group, rest) = in.partition(_ == in(0))
+    if (rest.isEmpty) {
+      List(group)
+    } else {
+      group::groupEquals(rest)
+    }
   }
 
   /**

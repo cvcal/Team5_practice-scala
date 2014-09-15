@@ -15,15 +15,14 @@ object ListManipulationExercise01 {
    * 
    */
   def firstElementInList[T](l: List[T]): T = {
-    //buildin
-    null.asInstanceOf[T]
+	l head
   }
 
   /**
    * Get the sum of all the elements in the list, e.g. sumOfList(List(1,2,3)) = 6.
    */
   def sumOfList(l: List[Int]): Int = {
-    error("fix me")
+    l sum
   }
 
   /**
@@ -35,7 +34,7 @@ object ListManipulationExercise01 {
    *  - ... etc
    */
   def lastElementInList[T](l: List[T]): T = {
-    error("fix me")
+    l last
   }
 
    /**
@@ -47,7 +46,7 @@ object ListManipulationExercise01 {
    *  - ... etc
    */
   def nthElementInList[T](n: Int, l: List[T]): T = {
-    error("fix me")
+    l(n)
   }
 
   /**
@@ -59,7 +58,7 @@ object ListManipulationExercise01 {
    *  - ... etc 
    */
   def concatLists[T](l1: List[T], l2: List[T]): List[T] = {
-    error("fix me")
+    l1 ++ l2
   }
 
   /**
@@ -70,8 +69,8 @@ object ListManipulationExercise01 {
    * - ... whichever way you like 
    * 
    */
-  def sortList[T <% Ordered[T]](list: List[T]): List[T] = {
-    error("fix me")
+  def sortList[T <% Ordered[T]](l: List[T]): List[T] = {
+    l sorted
   }
 
   /**
@@ -79,7 +78,7 @@ object ListManipulationExercise01 {
    * Again, easy to implement using built-in functionality, but also possible to implement in your own free-style way.
    */
   def elementExists[T](l: List[T], e: T): Boolean = {
-    error("fix me")
+    l contains(e)
   }
 
   /**
@@ -87,8 +86,8 @@ object ListManipulationExercise01 {
    * As always, use either build-in functions (for instance the filter method), or roll your own way via a
    * pattern match or some other method.
    */
-  def oddElements(iList: List[Int]): List[Int] = {
-    error("fix me")
+  def oddElements(l: List[Int]): List[Int] = {
+    l.filter{(x: Int) => x%2 == 1}
   }
 
   /**
@@ -99,7 +98,12 @@ object ListManipulationExercise01 {
    * Implement it whatever way suites you best. Hint: it can be done in a neat way using recursion. 
    */
   def tails[T](l: List[T]): List[List[T]] = {
-    error("fix me")
+    if (l.size > 0) {
+    	tails(l tail).::(l)
+    }
+    else {
+    	List(List())
+    }
   }
 }
 
