@@ -33,7 +33,22 @@ object CollectionExercise01 {
    *
    */
   def googleCodeJamGooglerese(lines: String*): Seq[String] = {
-    error("fix me")
+    val string1a : String = "ejp mysljylc kd kxveddknmc re jsicpdrysi"
+    val string1b : String = "our language is impossible to understand"
+      
+    val string2a : String = "rbcpc ypc rtcsra dkh wyfrepkym veddknkmkrkcd"
+    val string2b : String = "there are twenty six factorial possibilities"
+      
+    val string3a : String = "de kr kd eoya kw aej tysr re ujdr lkgc jv"
+    val string3b : String = "so it is okay if you want to just give up"
+      
+    val string1zip = string1a.zip(string1b)
+    val string2zip = string2a.zip(string2b)
+    val string3zip = string3a.zip(string3b)
+    
+    val cypher : Map[Char, Char] = Map() ++ string1zip ++ string2zip ++ string3zip
+    
+    lines.map(_.map(cypher(_)))
   }
 }
 /*========================================================== */
@@ -65,8 +80,7 @@ object CollectionExercise03 {
    * checkValuesIncrease(Seq(1,2,2)) == false
    */
   def checkValuesIncrease[T <% Ordered[T]](seq: Seq[T]): Boolean =
-        error("fix me")
-   // seq.sliding(2,1).toList.find{(x:Seq[T] )=> x(1)<=x(0)}.isEmpty()
+   seq.sliding(2,1).forall{x: (Seq[T]) => if (x.length>1) x(1) > x(0) else true}
 
 }
 /*========================================================== */

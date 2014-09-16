@@ -69,7 +69,12 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List(1,2,3)
    */
   def compress[T](in: List[T]): List[T] = {
-    error("fix me")
+    val (group, rest) = in.partition(_ == in(0))
+    if (rest.isEmpty) {
+      List(in(0))
+    } else {
+      in(0)::compress(rest)
+    }
   }
   
   /**
@@ -77,15 +82,26 @@ object RecursionPatternMatchingExercise {
    * List(1,1,2,3,1,1) -> List((4,1),(1,2),(1,3))
    */
   def amountEqualMembers[T](in: List[T]): List[(Int, T)] = {
-    error("fix me")
+    val (group, rest) = in.partition(_ == in(0))
+    if (rest.isEmpty) {
+      List((group.size, in(0)))
+    } else {
+      (group.size, in(0))::amountEqualMembers(rest)
+    }
   }
   
   /**
    * Zip multiple lists
    * List(List(1,2,3), List('A, 'B, 'C), List('a, 'b, 'c)) -> List(List(1, 'A, 'a), List(2, 'B, 'b), List(3, 'C, 'c))
+   * List(List(1,2,3)) -> List(List(1), List(2), List(3))
    */
   def zipMultiple(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    if (in(0).size == 0) {
+      List()
+    }
+    else {
+      List(in.map(_.head)) ++ zipMultiple(in.map(_.tail))
+    }
   }
 
   /**
@@ -93,7 +109,12 @@ object RecursionPatternMatchingExercise {
    * List(List(1), List('A, 'B, 'C), List('a, 'b)) -> List(List(1, 'A, 'a))
    */
   def zipMultipleWithDifferentSize(in: List[List[_]]): List[List[_]] = {
-    error("fix me")
+    if (in.map(_.size).min == 0) {
+      List()
+    }
+    else {
+      List(in.map(_.head)) ++ zipMultipleWithDifferentSize(in.map(_.tail))
+    }
   }
 
 }
